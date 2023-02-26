@@ -1,6 +1,7 @@
 import fs from "fs";
 import { join } from "path";
 import { bundleMDX } from "mdx-bundler";
+import imageMetadata from "./image-metadata-plugin";
 
 const postsDirectory = join(process.cwd(), "_posts");
 
@@ -22,6 +23,14 @@ export async function getPostBySlug(slug: string, fields: string[] = []) {
   const { code, frontmatter } = await bundleMDX({
     source,
     cwd: postsDirectory,
+    mdxOptions: (options) => {
+      // Other configuration...
+
+      // Configure the custom image metadata rehype plugin.
+      options.rehypePlugins = [...(options.rehypePlugins ?? []), imageMetadata];
+
+      return options;
+    },
   });
 
   return {

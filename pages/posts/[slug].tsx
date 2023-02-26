@@ -3,7 +3,7 @@ import Head from "next/head";
 import { getMDXComponent } from "mdx-bundler/client";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { getPostSlugs, getPostBySlug } from "@/lib/api";
-import MDXButtonTest from "@/components/MDXButtonTest";
+import Image from "next/image";
 
 type Props = {
   code: string;
@@ -27,7 +27,26 @@ export default function BlogPost({ code, frontmatter }: Props) {
           </div>
         </header>
         <section itemProp="articleBody">
-          <Component components={{}} />
+          <Component
+            components={{
+              img: ({
+                src,
+                className,
+                height,
+                width,
+                alt,
+              }: React.ImgHTMLAttributes<HTMLImageElement>) => (
+                <Image
+                  style={{ maxWidth: "100%", height: "auto" }}
+                  priority
+                  src={src as string}
+                  height={height as number}
+                  width={width as number}
+                  alt={alt as string}
+                />
+              ),
+            }}
+          />
         </section>
       </article>
     </>
