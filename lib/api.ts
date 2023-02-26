@@ -21,6 +21,7 @@ export async function getPostBySlug(slug: string, fields: string[] = []) {
 
   const { code, frontmatter } = await bundleMDX({
     source,
+    cwd: postsDirectory,
   });
 
   return {

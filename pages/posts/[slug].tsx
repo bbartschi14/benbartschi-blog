@@ -3,6 +3,7 @@ import Head from "next/head";
 import { getMDXComponent } from "mdx-bundler/client";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { getPostSlugs, getPostBySlug } from "@/lib/api";
+import MDXButtonTest from "@/components/MDXButtonTest";
 
 type Props = {
   code: string;
@@ -26,7 +27,7 @@ export default function BlogPost({ code, frontmatter }: Props) {
           </div>
         </header>
         <section itemProp="articleBody">
-          <Component />
+          <Component components={{}} />
         </section>
       </article>
     </>
