@@ -1,0 +1,17 @@
+.TableOfContents {
+    display: none;
+    position: sticky;
+    z-index: 5;
+    top: 80px;
+    background: var(--color-primary);
+    flex-basis: 300px;
+    flex-shrink: 0;
+    margin-left: 100px;
+    max-height: calc(100vh - 200px);
+}
+
+@media (min-width: 1100px) {
+    .TableOfContents {
+        display: block;
+    }
+}
