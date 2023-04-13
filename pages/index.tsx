@@ -22,15 +22,16 @@ export default function Home({ frontmatters }: Props) {
         </Head>
         <Navbar background="var(--blue-gray)" />
         <main style={{ paddingTop: "80px" }}>
-          <h1
+          <div
             style={{
-              maxWidth: "var(--max-width)",
-              margin: "auto",
               padding: "0 var(--page-margin)",
             }}
           >
-            Blog
-          </h1>
+            <h1 style={{ margin: "auto", maxWidth: "var(--max-width)", paddingLeft: "32px" }}>
+              Blog
+            </h1>
+          </div>
+
           <div style={{ padding: "0px var(--page-margin)", marginTop: "24px" }}>
             <div className={styles.PostsGrid}>
               {frontmatters.map((frontmatter) => {
