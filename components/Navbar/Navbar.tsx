@@ -1,7 +1,12 @@
 import Link from "next/link";
 import React, { PropsWithChildren } from "react";
 
-const Navbar: React.FC<PropsWithChildren> = (props) => {
+type Props = {
+  children?: React.ReactNode | undefined;
+  background?: string;
+};
+
+const Navbar: React.FC<Props> = (props) => {
   return (
     <div
       style={{
@@ -9,6 +14,7 @@ const Navbar: React.FC<PropsWithChildren> = (props) => {
         zIndex: 5,
         top: "0px",
         padding: "0px var(--page-margin)",
+        background: props.background || "none",
       }}
     >
       <div

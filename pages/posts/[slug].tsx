@@ -7,13 +7,16 @@ import Image from "next/image";
 import Paragraph from "@/components/Paragraph";
 import Navbar from "@/components/Navbar";
 import TableOfContents from "@/components/TableOfContents";
+import { HeadingItem } from "@/lib/lib";
+import Heading from "@/components/Heading";
 
 type Props = {
   code: string;
   frontmatter: any;
+  headingItems: HeadingItem[];
 };
 
-export default function BlogPost({ code, frontmatter }: Props) {
+export default function BlogPost({ code, frontmatter, headingItems }: Props) {
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
   return (
@@ -75,9 +78,10 @@ export default function BlogPost({ code, frontmatter }: Props) {
                 display: "flex",
                 flexDirection: "row-reverse",
                 justifyContent: "center",
+                alignItems: "flex-start",
               }}
             >
-              <TableOfContents />
+              <TableOfContents headingItems={headingItems} />
               <section
                 itemProp="articleBody"
                 style={{ flexShrink: 1, maxWidth: "var(--max-width-smaller)" }}
@@ -85,6 +89,8 @@ export default function BlogPost({ code, frontmatter }: Props) {
                 <Component
                   components={{
                     p: Paragraph,
+                    h2: (props) => <Heading level={2} {...props} />,
+                    h3: (props) => <Heading level={3} {...props} />,
                     img: ({
                       src,
                       height,
@@ -93,7 +99,6 @@ export default function BlogPost({ code, frontmatter }: Props) {
                     }: React.ImgHTMLAttributes<HTMLImageElement>) => (
                       <Image
                         style={{ maxWidth: "100%", height: "auto" }}
-                        priority
                         src={src as string}
                         height={height as number}
                         width={width as number}

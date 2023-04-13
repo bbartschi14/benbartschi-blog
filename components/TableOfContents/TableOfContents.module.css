@@ -3,15 +3,46 @@
     position: sticky;
     z-index: 5;
     top: 80px;
-    background: var(--color-primary);
     flex-basis: 300px;
     flex-shrink: 0;
+    margin-top: 24px;
     margin-left: 100px;
+    flex-direction: column;
     max-height: calc(100vh - 200px);
 }
 
 @media (min-width: 1100px) {
     .TableOfContents {
-        display: block;
+        display: flex;
     }
+}
+
+.HeadingsContainer {
+    margin-top:16px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.Title {
+    font-weight: bold;
+    padding-left: 16px;
+    font-size: var(--font-size-medium);
+
+}
+
+.Item {
+    padding: 8px 16px;
+    font-size: var(--font-size-small);
+    color: gray
+}
+
+.selected {
+    color: green;
+    font-weight: bold;
+}
+
+.Item:hover {
+    color: var(--font-color);
+    cursor: pointer;
 }
